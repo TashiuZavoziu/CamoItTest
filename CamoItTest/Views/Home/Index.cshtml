@@ -1,0 +1,55 @@
+﻿<div ng-controller="ProductsController">
+    <div>
+        <h2>Выберите .csv файл</h2>
+        <form ng-submit="upload(files)" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-md-2">
+                    <label ng-click="firefoxReset()" for="file-input" class="btn-block">
+                        <span class="btn btn-primary btn-block">Выбрать файл</span>
+                    </label>
+                    <input id="file-input" type="file" ng-model="files" camo-file class="form-control camo-file" />
+                </div>
+                <div class="col-md-2">
+                    <span class="btn">
+                        {{files[0].name || 'Выберите файл...'}}
+                    </span>
+                </div>
+                <div class="col-md-2">
+                    <button disabled="disabled" class="btn btn-success btn-block" ng-disabled="fileError() || processing">Отправить</button>
+                </div>
+                <div class="col-md-3" ng-show="progress">
+                    <div class="btn btn-block color" ng-cloak>{{progress + '%'}}</div>
+                </div>
+                <div class="col-md-3">
+                    <div class="btn" ng-cloak ng-show="message">{{message}}</div>
+                    <div class="btn" ng-cloak ng-hide="message">{{update}}</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-2" ng-cloak ng-show="files[0] && fileError()">
+                    <span class="label label-danger">
+                        Нужно выбрать .csv файл
+                    </span>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div ng-show="mapping.length" ng-cloak>
+        <table class="table table-striped table-hover table-bordered">
+            <tr>
+                <th>Название</th>
+                <th>В базе данных</th>
+            </tr>
+            <tr ng-repeat="map in mapping">
+                <td>{{map.Name}}</td>
+                <td>
+                    <select class="camo-select"
+                            ng-init="mapping[$index].ProductParameter = parameters[0]"
+                            ng-options="param.Name for param in parameters" ng-model="mapping[$index].ProductParameter"></select>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+

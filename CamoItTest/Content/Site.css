@@ -1,0 +1,17 @@
+﻿[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+[camo-file], .camo-file {
+    display: none !important;
+}
+
+.table td .camo-select {
+    padding: 3px;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+.color {
+    background: #4CAF50;
+}
